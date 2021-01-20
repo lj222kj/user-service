@@ -2,9 +2,18 @@ package database
 
 import (
 	"github.com/stretchr/testify/assert"
+	"os"
 	"testing"
 )
 
+var (
+	db Database
+)
+
+func TestMain(m *testing.M) {
+	db = New()
+	os.Exit(m.Run())
+}
 func TestMemory_getUserSummary(t *testing.T) {
 	user, err := db.getUserSummary("1")
 	assert.Nil(t, err)
