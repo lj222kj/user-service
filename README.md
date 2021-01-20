@@ -1,5 +1,5 @@
 # user-service
-A user-service which returns a collection of dummy users.  
+A user-service written in GO which returns a collection of dummy users.
 
 Endpoints | Status | Body
 ------------ | -------------| -------------
