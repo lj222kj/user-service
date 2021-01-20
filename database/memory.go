@@ -28,10 +28,7 @@ func (m *memory) GetUserSummary(userIds []string) []*users.User {
 	var result []*users.User
 	for _, id := range userIds {
 		if user, err := m.getUserSummary(id); err == nil {
-			fmt.Println(id)
-			fmt.Println(user)
 			result = append(result, user)
-			fmt.Println(result)
 		}
 	}
 	return result
