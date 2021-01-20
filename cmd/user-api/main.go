@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"user-service/database"
 	"user-service/global"
+	"user-service/users"
 	"user-service/web"
 )
 
@@ -11,7 +13,9 @@ func main() {
 	if err != nil {
 		fmt.Errorf("failed to read env config")
 	}
-	api := web.New(cfg)
+	db := database.New()
+	userSvc := users.New(db)
+	api := web.New(cfg, userSvc)
 
 	err = api.ListenAndServe(); if err != nil {
 		fmt.Errorf("failed to listen to port", cfg.Port)

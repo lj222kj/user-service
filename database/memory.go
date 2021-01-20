@@ -11,7 +11,6 @@ type memory struct {
 
 
 func (m *memory) getUserSummary(id string) (*users.User, error) {
-	fmt.Println("Test",m.users)
 	for _, u := range m.users {
 		if u.ID != id {
 			continue
@@ -29,7 +28,10 @@ func (m *memory) GetUserSummary(userIds []string) []*users.User {
 	var result []*users.User
 	for _, id := range userIds {
 		if user, err := m.getUserSummary(id); err == nil {
+			fmt.Println(id)
+			fmt.Println(user)
 			result = append(result, user)
+			fmt.Println(result)
 		}
 	}
 	return result
@@ -39,10 +41,7 @@ func New() Database {
 	var users []*UserDto
 	for i := 0; i < 10; i++{
 		id := fmt.Sprint(i)
-		users = append(users, &UserDto{
-			ID:     id,
-			Name:   "Jazmine_" + id,
-		})
+		users = append(users, NewUserDto(id, "Jazmine_" + id, ""))
 	}
 	return &memory{users: users}
 }
