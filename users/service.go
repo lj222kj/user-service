@@ -9,8 +9,8 @@ func (s service) GetUserSummary(userIds []string) []*User {
 	return results
 }
 
-func New(db Database) Service {
-	return &service{
+func New(db Database) service {
+	return service {
 		database: db,
 	}
 }

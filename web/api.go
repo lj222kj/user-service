@@ -5,28 +5,27 @@ import (
 	"net/http"
 	"time"
 	"user-service/global"
-	"user-service/users"
 )
 
 type api struct {
 	mux *http.ServeMux
 	server *http.Server
 	config *global.Config
-	userSvc users.Service
+	userSvc UserService
 }
 
 func (a *api) handlers() {
 	a.mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 	})
-	a.mux.HandleFunc("/getUserSummary", a.GetUserSummary)
+	a.mux.Handle("/getUserSummary", http.HandlerFunc(a.GetUserSummary))
 }
 
 func (a api) ListenAndServe() error {
 	return a.server.ListenAndServe()
 }
 
-func New(config *global.Config, userSvc users.Service) *api {
+func New(config *global.Config, userSvc UserService) *api {
 	timeout := 10 * time.Second
 	mux := http.NewServeMux()
 	server := &http.Server{
