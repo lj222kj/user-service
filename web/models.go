@@ -8,7 +8,7 @@ type UserSummaryRequest struct {
 
 func (u UserSummaryRequest) Validate() error {
 	if len(u.Ids) <= 0 {
-		return fmt.Errorf("List is empty.")
+		return fmt.Errorf("list is empty")
 	}
 
 	return nil

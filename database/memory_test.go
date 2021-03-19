@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	db Database
+	db *memory
 )
 
 func TestMain(m *testing.M) {

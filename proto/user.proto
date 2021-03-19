@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package proto;
+import "google/protobuf/timestamp.proto";
+
+service UserSummary {
+	rpc GetUserSummary (UserSummaryRequest) returns (UserSummaryResponse);
+	rpc GetAllUserSummaries (UserSummaryRequest) returns (stream User);
+	rpc GetAllUserSummariesPaginated (stream UserSummariesPaginatedRequest) returns (stream User);
+}
+
+message UserSummaryRequest {
+	repeated string ids = 1;
+}
+
+message UserSummaryResponse {
+	repeated User users = 1;
+}
+
+message AllUserSummaries {
+	repeated string ids = 1;
+}
+
+message UserSummariesPaginatedRequest {
+	int64 lastId = 1;
+}
+
+message User {
+	string id = 1;
+	string	name = 2;
+	string	avatar = 3;
+	google.protobuf.Timestamp created_at = 4;
+}
+

@@ -6,6 +6,7 @@ type Config struct {
 	AppName string `envconfig:"APP_NAME" default:"user-api"`
 	Env     string `envconfig:"ENV" default:"dev"`
 	Port    string    `envconfig:"PORT" default:"8080""`
+	GrpcPort    string    `envconfig:"GRPCPORT" default:"9000""`
 }
 
 func New() (*Config, error) {
